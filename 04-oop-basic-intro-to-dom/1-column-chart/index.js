@@ -25,14 +25,13 @@ export default class ColumnChart {
   }
 
   _template() {
-    const isLoading = this.#data.length === 0 ? "column-chart_loading" : "";
+    const isLoading = this.#data.length === 0;
     const header = this.#formatHeading(this.#value);
-    const columns = this.#data.length > 0 ? this._renderColumns() : "";
 
     return `
-      <div class="column-chart ${isLoading}" style="--chart-height: ${
-      this.chartHeight
-    }">
+      <div class="column-chart ${
+        isLoading ? "column-chart_loading" : ""
+      }" style="--chart-height: ${this.chartHeight}">
         <div class="column-chart__title">
           ${this.#label}
           ${
@@ -46,7 +45,7 @@ export default class ColumnChart {
         <div class="column-chart__container">
           <div data-element="header" class="column-chart__header">${header}</div>
           <div data-element="body" class="column-chart__chart">
-            ${columns}
+            ${isLoading ? "" : this._renderColumns()}
           </div>
         </div>
       </div>
