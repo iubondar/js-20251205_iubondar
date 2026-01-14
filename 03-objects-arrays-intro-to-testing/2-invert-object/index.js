@@ -8,5 +8,7 @@ export function invertObj(obj) {
     return undefined;
   }
 
-  return Object.fromEntries(Object.entries(obj).map((pair) => pair.reverse()));
+  return Object.fromEntries(
+    Object.entries(obj).map(([key, value]) => [value, key])
+  );
 }
