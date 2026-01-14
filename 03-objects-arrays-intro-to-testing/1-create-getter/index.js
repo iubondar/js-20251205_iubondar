@@ -6,12 +6,6 @@
 export function createGetter(path) {
   const pathArr = path.split(".");
 
-  if (pathArr.length === 0) {
-    return function (obj) {
-      return obj;
-    };
-  }
-
   return function (obj) {
     return pathArr.reduce(
       (currentValue, currentKey) =>
