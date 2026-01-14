@@ -8,11 +8,8 @@ export function sortStrings(arr, param = "asc") {
   if (param !== "asc" && param !== "desc") return arr;
 
   // Создаем копию массива и сортируем его
-  const sortedArr = [...arr].sort((a, b) =>
-    a.localeCompare(b, ["ru", "en"], {
-      caseFirst: "upper",
-    })
-  );
-
-  return param === "asc" ? sortedArr : sortedArr.reverse();
+  return [...arr].sort((a, b) => {
+    const factor = param === "asc" ? 1 : -1;
+    return factor * a.localeCompare(b, ["ru", "en"], { caseFirst: "upper" });
+  });
 }
